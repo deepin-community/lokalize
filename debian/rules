@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS=hardening=+bindnow
+
+%:
+	dh $@ --with=kf5
+
+override_dh_auto_configure:
+	dh_auto_configure -Skf5 -- -DBUILD_TESTING=OFF
+
+.PHONY: override_dh_auto_test
